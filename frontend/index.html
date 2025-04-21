@@ -1,0 +1,90 @@
+<!-- RETO TÉCNICO - NTT DATA | HARVI ABEL HINOSTROZA JAVIER -->
+<!-- FRONTEND ESTÁTICO -->
+<!-- Archivo HTML para mostrar los usuarios aleatorios generados por la API en un formato responsive -->
+<!-- Utiliso CSS para el diselo y JavaScript para la interacción con la API. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Usuarios Aleatorios</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #dce6f2;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      margin: 0.4rem 0;
+      text-align: center;
+    }
+
+    .card p strong {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Usuarios Aleatorios</h1>
+  <div class="container" id="usuarios"></div>
+
+  <script>
+    fetch('http://localhost:3000/api/users')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('usuarios');
+        data.forEach(user => {
+          container.innerHTML += `
+            <div class="card">
+              <img src="${user.fotografia}" alt="Foto de ${user.nombre}" />
+              <p><strong>Nombre:</strong> ${user.nombre}</p>
+              <p><strong>Género:</strong> ${user.genero}</p>
+              <p><strong>Ubicación:</strong> ${user.ubicacion}</p>
+              <p><strong>Correo:</strong> ${user.correo}</p>
+              <p><strong>Fecha de nacimiento:</strong> ${new Date(user.fechaNacimiento).toLocaleDateString()}</p>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>

@@ -1,7 +1,6 @@
-/* 
-RETO TÉCNICO - NTT DATA
-- HARVI ABEL HINOSTROZA JAVIER 
-*/
+// RETO TÉCNICO - NTT DATA | HARVI ABEL HINOSTROZA JAVIER 
+// BACKEND CON NODE.JS Y EXPRESS
+// Creo un servidor Express que expone una API RESTful para obtener datos de usuarios aleatorios desde la API de Random User Generator (Dato que se brindo para la prueba técnica).
 
 const express = require('express');
 const axios = require('axios');
